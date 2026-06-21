@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+.venv/
+
+# 编辑器
+.vscode/
+.idea/
+.DS_Store
+
+# 凭据 - 不要把本地账号提交到仓库
+*.env
+.env
+cookies.txt
+
+# 日志
+*.log
