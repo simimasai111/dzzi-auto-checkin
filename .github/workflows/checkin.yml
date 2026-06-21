@@ -1,0 +1,43 @@
+name: DZZI.AI Auto Check-in
+
+on:
+  schedule:
+    # 每天 UTC 00:05（北京时间 08:05）执行；按需自行调整
+    - cron: "5 0 * * *"
+  workflow_dispatch:
+    inputs:
+      accounts:
+        description: "临时覆盖账号配置（可选），格式 user|pwd 每行一个"
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  checkin:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      DZZI_ACCOUNTS: ${{ secrets.DZZI_ACCOUNTS || inputs.accounts }}
+      NOTIFIER: ${{ secrets.NOTIFIER }}
+      NOTIFIER_TOKEN: ${{ secrets.NOTIFIER_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run check-in
+        run: python checkin.py
