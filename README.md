@@ -34,12 +34,12 @@
 
 **单账号**：
 ```
-3930750694@qq.com|221221qq
+123456@qq.com|123456
 ```
 
 **多账号**（每行一个，或用 `;` 分隔）：
 ```
-3930750694@qq.com|221221qq
+123456@qq.com|123456
 another@qq.com|anotherPwd
 ```
 
@@ -70,7 +70,7 @@ another@qq.com|anotherPwd
 
 ```bash
 pip install -r requirements.txt
-export DZZI_ACCOUNTS='3930750694@qq.com|221221qq'
+export DZZI_ACCOUNTS='123456@qq.com|123456'
 python checkin.py
 ```
 
